@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public class SkillRepository {
+public class SkillRepository {
+    Skill getById (Integer id){
+        return Skill;
+    }
 }
