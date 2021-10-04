@@ -3,21 +3,27 @@ package entity;
 import com.google.gson.Gson;
 
 import java.io.FileReader;
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class SkillRepository{
     private List<Skill> skills;
 
-    public Skill getAll(){
-        Gson gson = new Gson();
-        try(FileReader reader = new FileReader("skills.json"))
-        {
-            Skill skill = gson.fromJson(reader,Skill.class);
-            return skill;
-        }catch (Exception e){
-            System.out.println("Exception " + e.toString());
-        }
-        return null;
+    @Override
+    public String toString() {
+        return "SkillRepository{" +
+                "skills=" + skills +
+                '}';
     }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+
 
 }
