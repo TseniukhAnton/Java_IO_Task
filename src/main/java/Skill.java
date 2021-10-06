@@ -1,5 +1,3 @@
-package entity;
-
 public class Skill {
     private Integer id;
     private String name;
@@ -30,7 +28,7 @@ public class Skill {
 
     @Override
     public String toString() {
-        return "entity.Skill{" +
+        return "Skill{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

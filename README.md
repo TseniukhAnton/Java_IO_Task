@@ -1,8 +1,8 @@
 Необходимо реализовать консольное CRUD приложение, которое имеет следующие сущности:
 
 Team(id, name, List<Developer> developers)
-Developer(id, firstName, lastName, List<entity.Skill> skills)
-entity.Skill(id, name)
+Developer(id, firstName, lastName, List<Skill> skills)
+Skill(id, name)
 TeamStatus (enum ACTIVE, DELETED)
 
 В качестве хранилища данных необходимо использовать текстовые файлы:
