@@ -8,32 +8,30 @@ import model.Skill;
 import java.io.*;
 
 import java.lang.reflect.Type;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class SkillRepository implements SkillRepo {
 
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private static final String LOCATION = "src\\main\\resources\\skills.json";
+    private static final String LOCATION = "C:\\Users\\Anton\\Documents\\GitHub\\CRUD\\src\\main\\resources\\skills.json";
 
-    private URL resourseUrl = getClass().getClassLoader().getResource(LOCATION);
+    private final URL resourseUrl = getClass().getClassLoader().getResource(LOCATION);
 
     public List<Skill> getSkills() {
         try {
-            String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
+            //String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
+            String skillJson = Files.readString(Path.of(LOCATION));
             Type type = new TypeToken<ArrayList<Skill>>() {
             }.getType();
             List<Skill> skills = gson.fromJson(skillJson, type);
             return skills;
-        } catch (IOException | URISyntaxException e) {
+        } catch (IOException | NullPointerException e) {
             System.out.println("Exception " + e.toString());
         }
         return null;
@@ -42,7 +40,7 @@ public class SkillRepository implements SkillRepo {
     @Override
     public Skill getById(Integer id) {
         try {
-            Stream.of(getSkills()).filter(id).
+            return getSkills().stream().filter(skill -> skill.getId().equals(id)).findAny().get();
         } catch (Exception e) {
             System.out.println("Exception " + e.toString());
         }
@@ -52,15 +50,9 @@ public class SkillRepository implements SkillRepo {
     @Override
     public void deleteById(Integer id) {
         try {
-            String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
-            Type type = new TypeToken<ArrayList<Skill>>() {
-            }.getType();
-            List<Skill> skills = gson.fromJson(skillJson, type);
-            skills.removeIf(skill -> skill.getId().equals(id));
-            for (Skill skill : skills) {
-                System.out.println(skill);
-            }
-        } catch (IOException | URISyntaxException e) {
+            getSkills().removeIf(skill -> skill.getId().equals(id));
+            System.out.println(getSkills());
+        } catch (Exception e) {
             System.out.println("Exception " + e.toString());
         }
     }
@@ -68,20 +60,10 @@ public class SkillRepository implements SkillRepo {
     @Override
     public Skill update(Skill skill) {
         try {
-            String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
-            Type type = new TypeToken<ArrayList<Skill>>() {
-            }.getType();
-            List<Skill> skills = gson.fromJson(skillJson, type);
-            for (Skill skillArr : skills) {
-                if (skillArr.getId().equals(skill.getId())) {
-                    skillArr.setName("NewSkill");
-                }
-            }
-            String newRecord = gson.toJson(skills);
-            ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(LOCATION));
-            obj.writeObject(newRecord);
-            System.out.println(skills);
-        } catch (IOException | URISyntaxException e) {
+            getSkills().stream().filter(skill1 -> skill1.getId().equals(skill.getId())).findAny().get().setName("NewSkill");
+            String newRecord = gson.toJson(getSkills());
+            return skill;
+        } catch (Exception e) {
             System.out.println("Exception " + e.toString());
         }
         return null;
@@ -90,15 +72,8 @@ public class SkillRepository implements SkillRepo {
     @Override
     public Skill save(Skill skill) {
         try {
-            String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
-            Type type = new TypeToken<ArrayList<Skill>>() {
-            }.getType();
-            List<Skill> skills = gson.fromJson(skillJson, type);
-            skills.add(skill);
-            String newRecord = gson.toJson(skills);
-            ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(LOCATION));
-            obj.writeObject(newRecord);
-            System.out.println(skills);
+            getSkills().add(skill);
+            String newRecord = gson.toJson(getSkills());
             return skill;
         } catch (Exception e) {
             System.out.println("Exception " + e.toString());
@@ -109,11 +84,7 @@ public class SkillRepository implements SkillRepo {
     @Override
     public List<Skill> getAll() {
         try {
-            String skillsJson = Files.readString(Path.of(resourseUrl.toURI()));
-            Type type = new TypeToken<ArrayList<Skill>>() {
-            }.getType();
-            List<Skill> skills = gson.fromJson(skillsJson, type);
-            return skills;
+            return getSkills();
         } catch (Exception e) {
             System.out.println("Exception " + e.toString());
         }
