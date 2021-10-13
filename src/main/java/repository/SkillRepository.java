@@ -1,6 +1,9 @@
+package repository;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import model.Skill;
 
 import java.io.*;
 
@@ -11,34 +14,43 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class SkillRepository {
+public class SkillRepository implements SkillRepo {
 
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private static final String LOCATION = "skills.json";
+    private static final String LOCATION = "src\\main\\resources\\skills.json";
 
     private URL resourseUrl = getClass().getClassLoader().getResource(LOCATION);
 
-    public Skill getSkillById(Integer id) {
+    public List<Skill> getSkills() {
         try {
             String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
             Type type = new TypeToken<ArrayList<Skill>>() {
             }.getType();
             List<Skill> skills = gson.fromJson(skillJson, type);
-            for (Skill skill : skills) {
-                if (skill.getId().equals(id)) {
-                    return skill;
-                }
-            }
+            return skills;
         } catch (IOException | URISyntaxException e) {
             System.out.println("Exception " + e.toString());
         }
         return null;
     }
 
-    public void deleteSkillById(Integer id) {
+    @Override
+    public Skill getById(Integer id) {
+        try {
+            Stream.of(getSkills()).filter(id).
+        } catch (Exception e) {
+            System.out.println("Exception " + e.toString());
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
         try {
             String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
             Type type = new TypeToken<ArrayList<Skill>>() {
@@ -53,6 +65,7 @@ public class SkillRepository {
         }
     }
 
+    @Override
     public Skill update(Skill skill) {
         try {
             String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
@@ -74,6 +87,7 @@ public class SkillRepository {
         return null;
     }
 
+    @Override
     public Skill save(Skill skill) {
         try {
             String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
@@ -92,6 +106,7 @@ public class SkillRepository {
         return null;
     }
 
+    @Override
     public List<Skill> getAll() {
         try {
             String skillsJson = Files.readString(Path.of(resourseUrl.toURI()));

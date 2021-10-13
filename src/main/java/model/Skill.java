@@ -1,3 +1,5 @@
+package model;
+
 public class Skill {
     private Integer id;
     private String name;
@@ -28,7 +30,7 @@ public class Skill {
 
     @Override
     public String toString() {
-        return "Skill{" +
+        return "model.Skill{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
