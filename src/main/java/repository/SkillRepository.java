@@ -60,7 +60,7 @@ public class SkillRepository implements SkillRepo {
     public Skill update(Skill skill) {
         try {
             getSkills().stream().filter(skill1 -> skill1.getId().equals(skill.getId())).findAny().get().setName("NewSkill");
-            String newRecord = gson.toJson(getSkills());
+            gson.toJson(getSkills());
             return skill;
         } catch (Exception e) {
             System.out.println("Exception " + e);
@@ -72,7 +72,7 @@ public class SkillRepository implements SkillRepo {
     public Skill save(Skill skill) {
         try {
             getSkills().add(skill);
-            String newRecord = gson.toJson(getSkills());
+            gson.toJson(getSkills());
             return skill;
         } catch (Exception e) {
             System.out.println("Exception " + e);
