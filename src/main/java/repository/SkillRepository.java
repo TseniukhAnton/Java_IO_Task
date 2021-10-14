@@ -29,10 +29,9 @@ public class SkillRepository implements SkillRepo {
             String skillJson = Files.readString(Path.of(LOCATION));
             Type type = new TypeToken<ArrayList<Skill>>() {
             }.getType();
-            List<Skill> skills = gson.fromJson(skillJson, type);
-            return skills;
+            return gson.fromJson(skillJson, type);
         } catch (IOException | NullPointerException e) {
-            System.out.println("Exception " + e.toString());
+            System.out.println("Exception " + e);
         }
         return null;
     }
@@ -42,7 +41,7 @@ public class SkillRepository implements SkillRepo {
         try {
             return getSkills().stream().filter(skill -> skill.getId().equals(id)).findAny().get();
         } catch (Exception e) {
-            System.out.println("Exception " + e.toString());
+            System.out.println("Exception " + e);
         }
         return null;
     }
@@ -53,7 +52,7 @@ public class SkillRepository implements SkillRepo {
             getSkills().removeIf(skill -> skill.getId().equals(id));
             System.out.println(getSkills());
         } catch (Exception e) {
-            System.out.println("Exception " + e.toString());
+            System.out.println("Exception " + e);
         }
     }
 
@@ -64,7 +63,7 @@ public class SkillRepository implements SkillRepo {
             String newRecord = gson.toJson(getSkills());
             return skill;
         } catch (Exception e) {
-            System.out.println("Exception " + e.toString());
+            System.out.println("Exception " + e);
         }
         return null;
     }
@@ -76,7 +75,7 @@ public class SkillRepository implements SkillRepo {
             String newRecord = gson.toJson(getSkills());
             return skill;
         } catch (Exception e) {
-            System.out.println("Exception " + e.toString());
+            System.out.println("Exception " + e);
         }
         return null;
     }
@@ -86,7 +85,7 @@ public class SkillRepository implements SkillRepo {
         try {
             return getSkills();
         } catch (Exception e) {
-            System.out.println("Exception " + e.toString());
+            System.out.println("Exception " + e);
         }
         return null;
     }
