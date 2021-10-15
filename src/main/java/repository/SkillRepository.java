@@ -36,14 +36,22 @@ public class SkillRepository implements SkillRepo {
         return null;
     }
 
+    private void writeToFile(List<Skill> skills) {
+        try (Writer writer = new FileWriter("skills.json")) {
+            gson.toJson(skills, writer);
+        } catch (Exception e) {
+            System.out.println("Exception " + e);
+        }
+    }
+
     @Override
     public Skill getById(Integer id) {
         try {
             return getSkills().stream()
                     .filter(skill -> skill.getId()
                             .equals(id))
-                            .findAny()
-                            .get();
+                    .findAny()
+                    .get();
         } catch (Exception e) {
             System.out.println("Exception " + e);
         }
@@ -52,41 +60,30 @@ public class SkillRepository implements SkillRepo {
 
     @Override
     public void deleteById(Integer id) {
-        try (Writer writer = new FileWriter("skills.json")) {
-            getSkills().removeIf(skill -> skill.getId().equals(id));
-            gson.toJson(getSkills(), writer);
-        } catch (Exception e) {
-            System.out.println("Exception " + e);
-        }
+        List<Skill> list = getSkills();
+        list.removeIf(skill -> skill.getId().equals(id));
+        writeToFile(list);
     }
 
     @Override
     public Skill update(Skill skill) {
-        try (Writer writer = new FileWriter("skills.json")) {
-            getSkills().stream()
-                    .filter(skill1 -> skill1.getId()
-                            .equals(skill.getId()))
-                            .findAny()
-                            .get()
-                            .setName("NewSkill");
-            gson.toJson(getSkills(), writer);
-            return skill;
-        } catch (Exception e) {
-            System.out.println("Exception " + e);
-        }
-        return null;
+        List<Skill> list = getSkills();
+        list.stream()
+                .filter(currentskill -> currentskill.getId()
+                        .equals(skill.getId()))
+                .findFirst()
+                .get()
+                .setName("NewSkill");
+        writeToFile(list);
+        return skill;
     }
 
     @Override
     public Skill save(Skill skill) {
-        try (Writer writer = new FileWriter("skills.json")) {
-            getSkills().add(skill);
-            gson.toJson(getSkills(), writer);
-            return skill;
-        } catch (Exception e) {
-            System.out.println("Exception " + e);
-        }
-        return null;
+        List<Skill> list = getSkills();
+        list.add(skill);
+        writeToFile(list);
+        return skill;
     }
 
     @Override
