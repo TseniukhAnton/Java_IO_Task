@@ -19,7 +19,7 @@ public class SkillRepository implements SkillRepo {
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private static final String LOCATION = "./skills.json";
+    private static final String LOCATION = "C:\\Users\\Anton\\Documents\\GitHub\\CRUD\\src\\main\\resources\\skills.json";
 
     private final URL resourseUrl = getClass().getClassLoader().getResource(LOCATION);
 
@@ -46,16 +46,11 @@ public class SkillRepository implements SkillRepo {
 
     @Override
     public Skill getById(Integer id) {
-        try {
-            return getSkills().stream()
-                    .filter(skill -> skill.getId()
-                            .equals(id))
-                    .findAny()
-                    .get();
-        } catch (Exception e) {
-            System.out.println("Exception " + e);
-        }
-        return null;
+        return getSkills().stream()
+                .filter(skill -> skill.getId()
+                        .equals(id))
+                .findAny()
+                .get();
     }
 
     @Override
@@ -88,12 +83,7 @@ public class SkillRepository implements SkillRepo {
 
     @Override
     public List<Skill> getAll() {
-        try {
-            return getSkills();
-        } catch (Exception e) {
-            System.out.println("Exception " + e);
-        }
-        return null;
+        return getSkills();
     }
 
 

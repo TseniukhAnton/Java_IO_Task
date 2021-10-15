@@ -10,7 +10,7 @@ public class Main {
         SkillRepository skillRepository = new SkillRepository();
         Skill skill4 = new Skill(4,"PlayChess");
         Skill skill5 = new Skill(5,"PlayGolf");
-        System.out.println(skillRepository.save(skill5));
+        //System.out.println(skillRepository.save(skill5));
         //System.out.println(skillRepository.getById(2));
         //System.out.println(skillRepository.getAll());
         Skill skill3 = new Skill(3,"Python");
