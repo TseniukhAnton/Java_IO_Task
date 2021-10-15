@@ -19,11 +19,11 @@ public class SkillRepository implements SkillRepo {
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private static final String LOCATION = "C:\\Users\\Anton\\Documents\\GitHub\\CRUD\\src\\main\\resources\\skills.json";
+    private static final String LOCATION = "./skills.json";
 
     private final URL resourseUrl = getClass().getClassLoader().getResource(LOCATION);
 
-    public List<Skill> getSkills() {
+    private List<Skill> getSkills() {
         try {
             //String skillJson = Files.readString(Path.of(resourseUrl.toURI()));
             String skillJson = Files.readString(Path.of(LOCATION));
@@ -39,7 +39,11 @@ public class SkillRepository implements SkillRepo {
     @Override
     public Skill getById(Integer id) {
         try {
-            return getSkills().stream().filter(skill -> skill.getId().equals(id)).findAny().get();
+            return getSkills().stream()
+                    .filter(skill -> skill.getId()
+                            .equals(id))
+                            .findAny()
+                            .get();
         } catch (Exception e) {
             System.out.println("Exception " + e);
         }
@@ -48,9 +52,9 @@ public class SkillRepository implements SkillRepo {
 
     @Override
     public void deleteById(Integer id) {
-        try {
+        try (Writer writer = new FileWriter("skills.json")) {
             getSkills().removeIf(skill -> skill.getId().equals(id));
-            System.out.println(getSkills());
+            gson.toJson(getSkills(), writer);
         } catch (Exception e) {
             System.out.println("Exception " + e);
         }
@@ -58,9 +62,14 @@ public class SkillRepository implements SkillRepo {
 
     @Override
     public Skill update(Skill skill) {
-        try {
-            getSkills().stream().filter(skill1 -> skill1.getId().equals(skill.getId())).findAny().get().setName("NewSkill");
-            gson.toJson(getSkills());
+        try (Writer writer = new FileWriter("skills.json")) {
+            getSkills().stream()
+                    .filter(skill1 -> skill1.getId()
+                            .equals(skill.getId()))
+                            .findAny()
+                            .get()
+                            .setName("NewSkill");
+            gson.toJson(getSkills(), writer);
             return skill;
         } catch (Exception e) {
             System.out.println("Exception " + e);
@@ -70,9 +79,9 @@ public class SkillRepository implements SkillRepo {
 
     @Override
     public Skill save(Skill skill) {
-        try {
+        try (Writer writer = new FileWriter("skills.json")) {
             getSkills().add(skill);
-            gson.toJson(getSkills());
+            gson.toJson(getSkills(), writer);
             return skill;
         } catch (Exception e) {
             System.out.println("Exception " + e);
