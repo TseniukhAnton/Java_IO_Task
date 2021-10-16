@@ -1,3 +1,38 @@
 [
-
+  {
+    "id": 1,
+    "name": "FirstTeam",
+    "developers": [
+      {
+        "id": 1,
+        "firstName": "Oleg",
+        "lastName": "Ivanov",
+        "skills": [
+          {
+            "id": 2,
+            "name": "Java"
+          },
+          {
+            "id": 6,
+            "name": "SQL"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "firstName": "Zhora",
+        "lastName": "Petrov",
+        "skills": [
+          {
+            "id": 1,
+            "name": "C++"
+          },
+          {
+            "id": 6,
+            "name": "SQL"
+          }
+        ]
+      }
+    ]
+  }
 ]
