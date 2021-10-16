@@ -19,7 +19,7 @@ public class SkillRepository implements SkillRepo {
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private static final String LOCATION = "C:\\Users\\Anton\\Documents\\GitHub\\CRUD\\src\\main\\resources\\skills.json";
+    private static final String LOCATION = ".\\src\\main\\resources\\skills.json";
 
     private final URL resourseUrl = getClass().getClassLoader().getResource(LOCATION);
 
@@ -37,7 +37,7 @@ public class SkillRepository implements SkillRepo {
     }
 
     private void writeToFile(List<Skill> skills) {
-        try (Writer writer = new FileWriter("skills.json")) {
+        try (Writer writer = new FileWriter(LOCATION)) {
             gson.toJson(skills, writer);
         } catch (Exception e) {
             System.out.println("Exception " + e);
@@ -49,7 +49,7 @@ public class SkillRepository implements SkillRepo {
         return getSkills().stream()
                 .filter(skill -> skill.getId()
                         .equals(id))
-                .findAny()
+                .findFirst()
                 .get();
     }
 
@@ -76,7 +76,9 @@ public class SkillRepository implements SkillRepo {
     @Override
     public Skill save(Skill skill) {
         List<Skill> list = getSkills();
-        list.add(skill);
+        if (list.size() < skill.getId()){
+            list.add(skill);
+        }
         writeToFile(list);
         return skill;
     }
