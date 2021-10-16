@@ -1,12 +1,16 @@
 package model;
 
-public class Skill {
+import java.util.List;
+
+public class Team {
     private Integer id;
     private String name;
+    List<Developer> developers;
 
-    public Skill(Integer id, String name) {
+    public Team(Integer id, String name, List<Developer> developers) {
         this.id = id;
         this.name = name;
+        this.developers = developers;
     }
 
     public Integer getId() {
@@ -25,11 +29,20 @@ public class Skill {
         this.name = name;
     }
 
+    public List<Developer> getDevelopers() {
+        return developers;
+    }
+
+    public void setDevelopers(List<Developer> developers) {
+        this.developers = developers;
+    }
+
     @Override
     public String toString() {
-        return "model.Skill{" +
+        return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", developers=" + developers +
                 '}';
     }
 }

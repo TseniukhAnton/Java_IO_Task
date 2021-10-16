@@ -1,6 +1,6 @@
 Необходимо реализовать консольное CRUD приложение, которое имеет следующие сущности:
 
-Team(id, name, List<Developer> developers)
+model.Team(id, name, List<Developer> developers)
 Developer(id, firstName, lastName, List<model.Skill> skills)
 model.Skill(id, name)
 TeamStatus (enum ACTIVE, DELETED)
@@ -14,12 +14,12 @@ repository - классы, реализующие доступ к текстов
 controller - обработка запросов от пользователя
 view - все данные, необходимые для работы с консолью
 
-Например: Team, TeamRepository, TeamController, TeamView и т.д.
+Например: model.Team, TeamRepository, TeamController, TeamView и т.д.
 Для репозиторного слоя желательно использовать базовый интерфейс:
 interface GenericRepository<T,ID>
 
 
 
-interface TeamRepository extends GenericRepository<Team, Long>
+interface TeamRepository extends GenericRepository<model.Team, Long>
 
 class GsonTeamRepositoryImpl implements TeamRepository
