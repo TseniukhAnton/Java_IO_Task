@@ -24,9 +24,9 @@ public class Main {
         Skill skill3 = new Skill(3,"Python");
         Skill skill2 = new Skill(2,"Java");
         Skill skill1 = new Skill(1,"C++");
-        System.out.println(skillRepository.save(skill4));
+        System.out.println(skillRepository.save(skill6));
         //skillRepository.deleteById(2);
-        //skillRepository.update(skill1);
+        skillRepository.update(skill4);
         //System.out.println(skillRepository.getAll());
 
         List<Skill> javaDev = new ArrayList<>();

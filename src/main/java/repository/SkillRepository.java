@@ -68,7 +68,7 @@ public class SkillRepository implements SkillRepo {
                         .equals(skill.getId()))
                 .findFirst()
                 .get()
-                .setName("NewSkill");
+                .setName("Ruby");
         writeToFile(list);
         return skill;
     }

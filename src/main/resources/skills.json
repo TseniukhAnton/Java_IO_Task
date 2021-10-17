@@ -13,6 +13,14 @@
   },
   {
     "id": 4,
-    "name": "PlayChess"
+    "name": "Ruby"
+  },
+  {
+    "id": 5,
+    "name": "PlayGolf"
+  },
+  {
+    "id": 6,
+    "name": "SQL"
   }
 ]
