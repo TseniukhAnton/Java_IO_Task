@@ -76,7 +76,9 @@ public class SkillRepository implements SkillRepo {
     @Override
     public Skill save(Skill skill) {
         List<Skill> list = getSkills();
-        if (list.get(list.size() - 1).getId() < skill.getId()){
+        if (list.isEmpty()) {
+            list.add(skill);
+        } else if (list.get(list.size() - 1).getId() < skill.getId()) {
             list.add(skill);
         }
         writeToFile(list);

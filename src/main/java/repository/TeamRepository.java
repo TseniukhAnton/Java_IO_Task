@@ -71,7 +71,9 @@ public class TeamRepository implements TeamRepo {
     @Override
     public Team save(Team team) {
         List<Team> list = getTeams();
-        if (list.get(list.size()-1).getId() < team.getId()){
+        if (list.isEmpty()) {
+            list.add(team);
+        } else if (list.get(list.size() - 1).getId() < team.getId()) {
             list.add(team);
         }
         writeToFile(list);

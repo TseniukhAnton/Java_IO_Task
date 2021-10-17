@@ -16,7 +16,7 @@ public class Main {
 
         SkillRepository skillRepository = new SkillRepository();
 
-        Skill skill4 = new Skill(4,"PlayChess");
+        Skill skill4 = new Skill(4,"Ruby");
         Skill skill5 = new Skill(5,"PlayGolf");
         Skill skill6 = new Skill(6,"SQL");
         //skillRepository.save(skill5);
@@ -33,18 +33,23 @@ public class Main {
         javaDev.add(skill2);
         javaDev.add(skill6);
         List<Skill> cplusDev = new ArrayList<>();
-        cplusDev.add(skill3);
+        cplusDev.add(skill1);
         cplusDev.add(skill6);
         List<Skill> pythonDev = new ArrayList<>();
-        pythonDev.add(skill1);
+        pythonDev.add(skill3);
         pythonDev.add(skill6);
+        List<Skill> rubyDev = new ArrayList<>();
+        rubyDev.add(skill4);
+        rubyDev.add(skill6);
         DeveloperRepository developerRepository = new DeveloperRepository();
         Developer javaDeveloper = new Developer(1,"Oleg", "Ivanov",javaDev);
         Developer cplusDeveloper = new Developer(2,"Zhora", "Petrov",cplusDev);
         Developer pythonDeveloper = new Developer(3,"Petr", "Kulich",pythonDev);
+        Developer rubyDeveloper = new Developer(4,"Ivan", "Bondar",rubyDev);
         developerRepository.save(javaDeveloper);
         developerRepository.save(cplusDeveloper);
         developerRepository.save(pythonDeveloper);
+        developerRepository.save(rubyDeveloper);
 
         List<Developer> developers = new ArrayList<>();
         developers.add(javaDeveloper);
