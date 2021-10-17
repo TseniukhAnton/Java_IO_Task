@@ -13,7 +13,7 @@
   },
   {
     "id": 4,
-    "name": "Ruby"
+    "name": "NewSkill"
   },
   {
     "id": 5,
@@ -22,5 +22,9 @@
   {
     "id": 6,
     "name": "SQL"
+  },
+  {
+    "id": 7,
+    "name": "Maven"
   }
 ]
