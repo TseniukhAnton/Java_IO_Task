@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.Developer;
-import model.Skill;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -67,7 +66,7 @@ public class DeveloperRepository implements DeveloperRepo {
     @Override
     public Developer save(Developer developer) {
         List<Developer> list = getDevelopers();
-        if (list.size() < developer.getId()) {
+        if (list.get(list.size() - 1).getId() < developer.getId()) {
             list.add(developer);
         }
         writeToFile(list);

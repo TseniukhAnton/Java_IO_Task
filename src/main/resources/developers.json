@@ -28,5 +28,20 @@
         "name": "SQL"
       }
     ]
+  },
+  {
+    "id": 3,
+    "firstName": "Petr",
+    "lastName": "Kulich",
+    "skills": [
+      {
+        "id": 1,
+        "name": "C++"
+      },
+      {
+        "id": 6,
+        "name": "SQL"
+      }
+    ]
   }
 ]
