@@ -3,7 +3,6 @@ package repository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import model.Developer;
 import model.Team;
 
 import java.io.FileWriter;
