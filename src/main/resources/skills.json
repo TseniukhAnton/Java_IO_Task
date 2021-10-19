@@ -4,10 +4,6 @@
     "name": "C++"
   },
   {
-    "id": 2,
-    "name": "Java"
-  },
-  {
     "id": 3,
     "name": "Python"
   },
@@ -26,5 +22,9 @@
   {
     "id": 7,
     "name": "Maven"
+  },
+  {
+    "id": 8,
+    "name": "Humor"
   }
 ]

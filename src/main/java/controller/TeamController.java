@@ -1,7 +1,6 @@
 package controller;
 
 import model.Developer;
-import model.Skill;
 import model.Team;
 import repository.GsonTeamRepositoryImpl;
 import repository.TeamRepository;
