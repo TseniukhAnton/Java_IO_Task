@@ -2,7 +2,6 @@ package view;
 
 
 import java.io.InputStreamReader;
-import java.util.List;
 import java.util.Scanner;
 
 public class CommonView {
@@ -13,65 +12,70 @@ public class CommonView {
     private final TeamView tv = new TeamView();
 
     public void start() {
-        System.out.println("What would you like to do? CREATE, READ, UPDATE OR DELETE?");
-        if (scanner.next().equals("CREATE")) {
+        System.out.println("What would you like to do? Create, Read, Update or Delete?");
+        String sc = scanner.next();
+        if (sc.equals("Create")) {
             System.out.println("What would you like to create? Skill, Developer or Team?");
-            if (scanner.next().equals("Skill")) {
+            String create = scanner.next();
+            if (create.equals("Skill")) {
                 sv.createSkillFromController();
                 System.out.println("New Skill was created");
                 sv.getSkillFromController();
-            } else if (scanner.next().equals("Developer")) {
+            } else if (create.equals("Developer")) {
                 dv.createDeveloperFromController();
                 System.out.println("New Developer was created");
                 dv.getDeveloperFromController();
-            } else if (scanner.next().equals("Team")) {
+            } else if (create.equals("Team")) {
                 tv.createTeamFromController();
                 System.out.println("New Team was created");
                 tv.getTeamFromController();
             } else {
                 System.out.println("Wrong command!");
             }
-        } else if (scanner.next().equals("READ")) {
+        } else if (sc.equals("Read")) {
             System.out.println("What would you like to read? Skill, Developer or Team?");
-            if (scanner.next().equals("Skill")) {
+            String read = scanner.next();
+            if (read.equals("Skill")) {
                 sv.getSkillFromController();
-            } else if (scanner.next().equals("Developer")) {
+            } else if (read.equals("Developer")) {
                 dv.getDeveloperFromController();
-            } else if (scanner.next().equals("Team")) {
+            } else if (read.equals("Team")) {
                 tv.getTeamFromController();
             } else {
                 System.out.println("Wrong command!");
             }
-        } else if (scanner.next().equals("UPDATE")) {
+        } else if (sc.equals("Update")) {
             System.out.println("What would you like to update? Skill, Developer or Team?");
-            if (scanner.next().equals("Skill")) {
+            String update = scanner.next();
+            if (update.equals("Skill")) {
                 sv.updateSkillFromController();
                 System.out.println("Skill was updated");
                 sv.getSkillFromController();
-            } else if (scanner.next().equals("Developer")) {
+            } else if (update.equals("Developer")) {
                 dv.updateDeveloperFromController();
                 System.out.println("Developer was updated");
                 dv.getDeveloperFromController();
-            } else if (scanner.next().equals("Team")) {
+            } else if (update.equals("Team")) {
                 tv.updateTeamFromController();
                 System.out.println("Team was updated");
                 tv.getTeamFromController();
             } else {
                 System.out.println("Wrong command!");
             }
-        } else if (scanner.next().equals("DELETE")) {
+        } else if (sc.equals("Delete")) {
             System.out.println("What would you like to delete? Skill, Developer or Team?");
-            if (scanner.next().equals("Skill")) {
+            String delete = scanner.next();
+            if (delete.equals("Skill")) {
                 sv.getAllSkillsFromController();
                 sv.deleteSkillFromController();
                 System.out.println("Skill was deleted");
                 sv.getAllSkillsFromController();
-            } else if (scanner.next().equals("Developer")) {
+            } else if (delete.equals("Developer")) {
                 dv.getAllDevelopersFromController();
                 dv.deleteDeveloperFromController();
                 System.out.println("Developer was deleted");
                 dv.getAllDevelopersFromController();
-            } else if (scanner.next().equals("Team")) {
+            } else if (delete.equals("Team")) {
                 tv.getAllTeamsFromController();
                 tv.deleteTeamFromController();
                 System.out.println("Team was deleted");
