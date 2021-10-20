@@ -74,7 +74,7 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
     public Skill update(Skill skill) {
         List<Skill> list = getSkills();
         for (Skill currentskill : list) {
-            if (currentskill.getId().equals(skill.getId())){
+            if (currentskill.getId().equals(skill.getId())) {
                 currentskill.setName(skill.getName());
             }
         }
@@ -89,6 +89,8 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
             list.add(skill);
         } else if (getMaxId(list) < skill.getId()) {
             list.add(skill);
+        } else {
+            System.out.println("id exists or was deleted previously");
         }
         writeToFile(list);
         return skill;

@@ -39,7 +39,7 @@ public class GsonTeamRepositoryImpl implements TeamRepository {
         }
     }
 
-    private Integer getMaxId(List<Team> list){
+    private Integer getMaxId(List<Team> list) {
         int maxId = 0;
         for (Team currentteam : list) {
             if (currentteam.getId() > maxId) {
@@ -68,7 +68,7 @@ public class GsonTeamRepositoryImpl implements TeamRepository {
     public Team update(Team team) {
         List<Team> list = getTeams();
         for (Team currentteam : list) {
-            if (currentteam.getId().equals(team.getId())){
+            if (currentteam.getId().equals(team.getId())) {
                 currentteam.setName(team.getName());
                 currentteam.setDevelopers(team.getDevelopers());
             }
@@ -84,6 +84,8 @@ public class GsonTeamRepositoryImpl implements TeamRepository {
             list.add(team);
         } else if (getMaxId(list) < team.getId()) {
             list.add(team);
+        } else {
+            System.out.println("id exists or was deleted previously");
         }
         writeToFile(list);
         return team;

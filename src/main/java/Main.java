@@ -6,8 +6,12 @@ import model.Team;
 import repository.GsonDeveloperRepositoryImpl;
 import repository.GsonSkillRepositoryImpl;
 import repository.GsonTeamRepositoryImpl;
+import view.CommonView;
+import view.DeveloperView;
 import view.SkillView;
+import view.TeamView;
 
+import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,9 +66,37 @@ public class Main {
 //        Team devTeam = new Team(1,"FirstTeam",developers);
 //        teamRepository.save(devTeam);
 
-        SkillView skillView = new SkillView();
-        skillView.createSkillFromController();
-        skillView.getAllSkillsFromController();
+//        SkillView skillView = new SkillView();
+//        skillView.getAllSkillsFromController();
+//        DeveloperView developerView = new DeveloperView();
+//        developerView.updateDeveloperFromController();
+//        TeamView teamView = new TeamView();
+//        teamView.updateTeamFromController();
+
+        CommonView view = new CommonView();
+        view.start();
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

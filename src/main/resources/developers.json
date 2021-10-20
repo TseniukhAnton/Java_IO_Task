@@ -58,5 +58,20 @@
         "name": "SQL"
       }
     ]
+  },
+  {
+    "id": 5,
+    "firstName": "Anton",
+    "lastName": "Antonov",
+    "skills": [
+      {
+        "id": 2,
+        "name": "Java"
+      },
+      {
+        "id": 6,
+        "name": "SQL"
+      }
+    ]
   }
 ]

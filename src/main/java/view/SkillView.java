@@ -13,7 +13,7 @@ public class SkillView {
     private final SkillController skillController = new SkillController();
 
     public Skill getSkillFromController() {
-        System.out.println("Please enter Skill id");
+        System.out.println("Please enter Skill id to find it");
         Integer id = scanner.nextInt();
         System.out.println(skillController.getSkill(id));
         return skillController.getSkill(id);
@@ -28,7 +28,7 @@ public class SkillView {
     }
 
     public Skill updateSkillFromController() {
-        System.out.println("Please enter Skill id and name");
+        System.out.println("Please enter Skill id and new name");
         Integer id = scanner.nextInt();
         String name = scanner.next();
         return skillController.updateSkill(id, name);

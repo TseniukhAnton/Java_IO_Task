@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.Developer;
-import model.Skill;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class GsonDeveloperRepositoryImpl implements DeveloperRepository {
         }
     }
 
-    private Integer getMaxId(List<Developer> list){
+    private Integer getMaxId(List<Developer> list) {
         int maxId = 0;
         for (Developer currentdeveloper : list) {
             if (currentdeveloper.getId() > maxId) {
@@ -66,7 +65,7 @@ public class GsonDeveloperRepositoryImpl implements DeveloperRepository {
     public Developer update(Developer developer) {
         List<Developer> list = getDevelopers();
         for (Developer currentdeveloper : list) {
-            if (currentdeveloper.getId().equals(developer.getId())){
+            if (currentdeveloper.getId().equals(developer.getId())) {
                 currentdeveloper.setFirstName(developer.getFirstName());
                 currentdeveloper.setLastName(developer.getLastName());
                 currentdeveloper.setSkills(developer.getSkills());
@@ -83,6 +82,8 @@ public class GsonDeveloperRepositoryImpl implements DeveloperRepository {
             list.add(developer);
         } else if (getMaxId(list) < developer.getId()) {
             list.add(developer);
+        } else {
+            System.out.println("id exists or was deleted previously");
         }
         writeToFile(list);
         return developer;
