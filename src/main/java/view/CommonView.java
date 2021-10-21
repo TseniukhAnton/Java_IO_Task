@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class CommonView {
-    Scanner scanner = new Scanner(new InputStreamReader(System.in));
+    private final Scanner scanner = new Scanner(new InputStreamReader(System.in));
 
     private final SkillView sv = new SkillView();
     private final DeveloperView dv = new DeveloperView();
